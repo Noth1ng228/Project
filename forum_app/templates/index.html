@@ -1,0 +1,30 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<body>
+    <div id="name"><h1>Entry</h1></div>
+
+    <div id="form">
+        <input type="text" id="content" placeholder="Write anithing" required>
+        <button id="addBtn">Add</button>
+    </div>
+
+    <div id="message"></div>
+
+    <div id="posts">
+        {% for post in posts %}
+        <div class="post" data-id="{{ post.id }}">
+            <p class="text">{{ post.content }}</p>
+            <div class="actions">
+                <button class="edit">Edit</button>
+                <button class="delete">🗑️</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
