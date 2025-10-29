@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    //
+    //delete
     postsDiv.addEventListener("click", async (e) => {
         const postDiv = e.target.closest(".post");
         const id = postDiv?.dataset.id;
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } else showMessage(result.message);
         }
 
-        
+        //edit
         if (e.target.classList.contains("edit")) {
             const textEl = postDiv.querySelector(".text");
             const oldText = textEl.textContent;
@@ -74,3 +74,4 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
