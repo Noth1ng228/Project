@@ -4,7 +4,10 @@
     <title>Chat</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <body>
-    {% if logged_in %}
+
+    <div id="name"><h1>SimpleChat</h1></div>
+
+        {% if logged_in %}
     <div style="text-align:center; margin-top:10px;">
         <p>Logged in as <b>admin</b> | <a href="{{ url_for('logout') }}">Logout</a></p>
     </div>
@@ -13,7 +16,6 @@
         <a href="{{ url_for('login') }}">Login as admin</a>
     </div>
 {% endif %}
-    <div id="name"><h1>SimpleChat</h1></div>
 
     <div id="form">
         <input type="text" id="content" placeholder="Write anithing" required>
