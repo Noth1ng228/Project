@@ -4,7 +4,16 @@
     <title>Chat</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <body>
-    <div id="name"><h1>Entry</h1></div>
+    {% if logged_in %}
+    <div style="text-align:center; margin-top:10px;">
+        <p>Logged in as <b>admin</b> | <a href="{{ url_for('logout') }}">Logout</a></p>
+    </div>
+{% else %}
+    <div style="text-align:center; margin-top:10px;">
+        <a href="{{ url_for('login') }}">Login as admin</a>
+    </div>
+{% endif %}
+    <div id="name"><h1>SimpleChat</h1></div>
 
     <div id="form">
         <input type="text" id="content" placeholder="Write anithing" required>
@@ -15,13 +24,34 @@
 
     <div id="posts">
         {% for post in posts %}
-        <div class="post" data-id="{{ post.id }}">
-            <p class="text">{{ post.content }}</p>
-            <div class="actions">
-                <button class="edit">Edit</button>
-                <button class="delete">🗑️</button>
+            <div class="post" data-id="{{ post.id }}">
+    <p class="text">{{ post.content }}</p>
+    {% if logged_in %}
+    <div class="actions">
+        <button class="edit">Edit</button>
+        <button class="delete">🗑️</button>
+    </div>
+    {% endif %}
+
+    <div class="replies">
+        {% for reply in post.replies %}
+            <div class="reply" data-id="{{ reply.id }}">
+                <p class="reply-text">{{ reply.content }}</p>
+                {% if logged_in %}
+                <div class="reply-actions">
+                    <button class="edit-reply">Edit</button>
+                    <button class="delete-reply">🗑️</button>
+                </div>
+                {% endif %}
             </div>
-        </div>
+        {% endfor %}
+    </div>
+
+    <div class="add-reply">
+        <input type="text" class="reply-input" placeholder="Write a reply...">
+        <button class="reply-btn">Reply</button>
+    </div>
+</div>
         {% endfor %}
     </div>
 
